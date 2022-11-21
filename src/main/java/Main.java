@@ -1,35 +1,62 @@
 public class Main {
     public static final char bomb = '\u2622';
+    public static char[][] board = new char[10][10];
+    public static boolean[][] showed = new boolean[10][10];
 
     public static void main(String[] args) {
 
-
-
-        char[][] tablero = new char[10][10];
         int bombs = 10;
 
-        fill(tablero);
-        placeBombs(bombs,tablero);
-        Screen.showDebug(tablero);
+        fill();
+        placeBombs(bombs);
+        Screen.show(board);
+        String cordinate = Cordinate.getCordinate("Enter a cordiante:");
 
+        place(cordinate);
     }
 
-    public static void fill(char[][] board){
+    private static void place(String cordinate) {
+        boolean[][] visit = new boolean[board.length][board[0].length];
+        place(visit,cordinate);
+    }
+    private static void place(boolean[][] visit, String cordinate) {
+        if(Cordinate.isCordinateValid(cordinate)) {
+            int fil = Cordinate.getRowFromCoordinate(cordinate);
+            int col = Cordinate.getColumnFromCoordinate(cordinate);
+
+            if (visit[fil][col]!=true && board[fil][col]!=bomb){
+                if(board[fil][col]=='0'){
+                    board[fil][col]=' ';
+                    showed[fil][col]=true;
+                    place(visit,Cordinate.getUp(cordinate));
+                    place(visit,Cordinate.getDown(cordinate));
+                    place(visit,Cordinate.getRight(cordinate));
+                    place(visit,Cordinate.getLeft(cordinate));
+
+                } else {
+                    showed[fil][col]=true;
+                }
+            }
+        }
+    }
+
+
+    public static void fill(){
         for(int fil=0;fil< board.length;fil++ )
             for(int col=0;col<board[fil].length;col++)
                 board[fil][col]='0';
     }
 
-    public static void placeBombs(int bombs, char[][] board){
+    public static void placeBombs(int bombs){
         String c;
         for(int i=0;i<bombs;i++){
             do {
                 c = Cordinate.getRandomCordinate();
             } while (board[Cordinate.getRowFromCoordinate(c)][Cordinate.getColumnFromCoordinate(c)] == bomb );
-            placeBomb(board,c);
+            placeBomb(c);
         }
     }
-    public static void placeBomb(char[][] board, String c){
+    public static void placeBomb(String c){
         board[Cordinate.getRowFromCoordinate(c)][Cordinate.getColumnFromCoordinate(c)] = Main.bomb;
 
         if(Cordinate.isCordinateValid(Cordinate.getUp(c)))

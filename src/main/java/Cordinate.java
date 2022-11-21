@@ -1,6 +1,18 @@
+import java.util.Scanner;
+
 public class Cordinate {
     public static String getRandomCordinate(){
         return String.valueOf((char)Input.getRandomInteger('J','A'))+String.valueOf((char)Input.getRandomInteger('9','0'));
+    }
+    public static String getCordinate(String text){
+        Scanner sc = new Scanner(System.in);
+        System.out.println(text);
+        String cordinate;
+        do{
+            cordinate = sc.nextLine();
+        }while (Cordinate.isCordinateValid(cordinate));
+
+        return cordinate;
     }
     public static boolean isCordinateValid(String cordinate){
         if(cordinate.length()!=2) return false;
