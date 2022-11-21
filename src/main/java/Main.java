@@ -13,33 +13,33 @@ public class Main {
         placeBombs(bombs);
         while (true) {
             Screen.show();
-            String cordinate = Cordinate.getCordinate("Enter a cordiante:");
-            place(cordinate);
+            String coordinate = Input.getCoordinate("Enter a coordiante:");
+            place(coordinate);
         }
     }
 
-    private static void place(String cordinate) {
+    private static void place(String coordinate) {
         boolean[][] visit = new boolean[board.length][board[0].length];
-        place(visit,cordinate);
+        place(visit,coordinate);
     }
-    private static void place(boolean[][] visit, String cordinate) {
-        if(Cordinate.isCordinateValid(cordinate)) {
-            int fil = Cordinate.getRowFromCoordinate(cordinate);
-            int col = Cordinate.getColumnFromCoordinate(cordinate);
+    private static void place(boolean[][] visit, String coordinate) {
+        if(Coordinate.isCoordinateValid(coordinate)) {
+            int fil = Coordinate.getRowFromCoordinate(coordinate);
+            int col = Coordinate.getColumnFromCoordinate(coordinate);
 
             if (!visit[fil][col] && board[fil][col]!= BOMB){
                 if(board[fil][col]=='0'){
                     board[fil][col]=' ';
                     showed[fil][col]=true;
-                    place(visit,Cordinate.getUp(cordinate));
-                    place(visit,Cordinate.getDown(cordinate));
-                    place(visit,Cordinate.getRight(cordinate));
-                    place(visit,Cordinate.getLeft(cordinate));
+                    place(visit, Coordinate.getUp(coordinate));
+                    place(visit, Coordinate.getDown(coordinate));
+                    place(visit, Coordinate.getRight(coordinate));
+                    place(visit, Coordinate.getLeft(coordinate));
 
-                    place(visit,Cordinate.getUpLeft(cordinate));
-                    place(visit,Cordinate.getDownLeft(cordinate));
-                    place(visit,Cordinate.getUpRight(cordinate));
-                    place(visit,Cordinate.getDownRight(cordinate));
+                    place(visit, Coordinate.getUpLeft(coordinate));
+                    place(visit, Coordinate.getDownLeft(coordinate));
+                    place(visit, Coordinate.getUpRight(coordinate));
+                    place(visit, Coordinate.getDownRight(coordinate));
 
                 } else {
                     showed[fil][col]=true;
@@ -59,36 +59,36 @@ public class Main {
         String c;
         for(int i=0;i<bombs;i++){
             do {
-                c = Cordinate.getRandomCordinate();
-            } while (board[Cordinate.getRowFromCoordinate(c)][Cordinate.getColumnFromCoordinate(c)] == BOMB);
+                c = Coordinate.getRandomCoordinate();
+            } while (board[Coordinate.getRowFromCoordinate(c)][Coordinate.getColumnFromCoordinate(c)] == BOMB);
             placeBomb(c);
         }
     }
     public static void placeBomb(String c){
-        board[Cordinate.getRowFromCoordinate(c)][Cordinate.getColumnFromCoordinate(c)] = Main.BOMB;
+        board[Coordinate.getRowFromCoordinate(c)][Coordinate.getColumnFromCoordinate(c)] = Main.BOMB;
 
-        if(Cordinate.isCordinateValid(Cordinate.getUp(c)))
-            incrementar(board,Cordinate.getUp(c));
-        if(Cordinate.isCordinateValid(Cordinate.getDown(c)))
-            incrementar(board,Cordinate.getDown(c));
-        if(Cordinate.isCordinateValid(Cordinate.getRight(c)))
-            incrementar(board,Cordinate.getRight(c));
-        if(Cordinate.isCordinateValid(Cordinate.getLeft(c)))
-            incrementar(board,Cordinate.getLeft(c));
+        if(Coordinate.isCoordinateValid(Coordinate.getUp(c)))
+            incrementar(board, Coordinate.getUp(c));
+        if(Coordinate.isCoordinateValid(Coordinate.getDown(c)))
+            incrementar(board, Coordinate.getDown(c));
+        if(Coordinate.isCoordinateValid(Coordinate.getRight(c)))
+            incrementar(board, Coordinate.getRight(c));
+        if(Coordinate.isCoordinateValid(Coordinate.getLeft(c)))
+            incrementar(board, Coordinate.getLeft(c));
 
-        if(Cordinate.isCordinateValid(Cordinate.getUpRight(c)))
-            incrementar(board,Cordinate.getUpRight(c));
-        if(Cordinate.isCordinateValid(Cordinate.getUpLeft(c)))
-            incrementar(board,Cordinate.getUpLeft(c));
-        if(Cordinate.isCordinateValid(Cordinate.getDownRight(c)))
-            incrementar(board,Cordinate.getDownRight(c));
-        if(Cordinate.isCordinateValid(Cordinate.getDownLeft(c)))
-            incrementar(board,Cordinate.getDownLeft(c));
+        if(Coordinate.isCoordinateValid(Coordinate.getUpRight(c)))
+            incrementar(board, Coordinate.getUpRight(c));
+        if(Coordinate.isCoordinateValid(Coordinate.getUpLeft(c)))
+            incrementar(board, Coordinate.getUpLeft(c));
+        if(Coordinate.isCoordinateValid(Coordinate.getDownRight(c)))
+            incrementar(board, Coordinate.getDownRight(c));
+        if(Coordinate.isCoordinateValid(Coordinate.getDownLeft(c)))
+            incrementar(board, Coordinate.getDownLeft(c));
 
     }
     public static void incrementar(char[][] board, String c){
-        int fil = Cordinate.getRowFromCoordinate(c);
-        int col = Cordinate.getColumnFromCoordinate(c);
+        int fil = Coordinate.getRowFromCoordinate(c);
+        int col = Coordinate.getColumnFromCoordinate(c);
 
         if(board[fil][col]!=Main.BOMB){
             int value = board[fil][col] - '0';
