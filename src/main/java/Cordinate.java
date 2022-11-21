@@ -9,8 +9,8 @@ public class Cordinate {
         System.out.println(text);
         String cordinate;
         do{
-            cordinate = sc.nextLine();
-        }while (Cordinate.isCordinateValid(cordinate));
+            cordinate = sc.nextLine().toUpperCase();
+        }while (!Cordinate.isCordinateValid(cordinate));
 
         return cordinate;
     }
