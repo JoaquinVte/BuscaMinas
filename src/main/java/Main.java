@@ -8,13 +8,14 @@ public class Main {
     public static void main(String[] args) {
 
         int bombs = 10;
-        Screen.initializeBoard(board);
+        Bomb.initializeBoard(board);
         Bomb.placeBombs(bombs, board);
         while (true) {
             Screen.show(board, showed);
             String coordinate = Input.getCoordinate("Enter a coordiante:");
             place(coordinate);
         }
+
     }
 
     private static void place(String coordinate) {

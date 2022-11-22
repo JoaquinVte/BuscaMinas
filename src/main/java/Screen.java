@@ -44,14 +44,4 @@ public class Screen {
         System.out.println(colorize("   ",Attribute.BLACK_BACK(),Attribute.WHITE_TEXT()));
     }
 
-    /**
-     * Initializes the board to 0
-     * @param board the board matrix
-     */
-    public static void initializeBoard(char[][] board){
-        for(int fil=0;fil< board.length;fil++ )
-            for(int col=0;col<board[fil].length;col++)
-                board[fil][col]='0';
-    }
-
 }

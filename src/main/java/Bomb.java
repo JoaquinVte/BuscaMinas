@@ -4,6 +4,16 @@
 public class Bomb {
 
     /**
+     * Initializes the board to 0
+     * @param board the board matrix
+     */
+    public static void initializeBoard(char[][] board){
+        for(int fil=0;fil< board.length;fil++ )
+            for(int col=0;col<board[fil].length;col++)
+                board[fil][col]='0';
+    }
+
+    /**
      * Method to place the bombs at the board avoiding to place more than one bomb in the same coordinate
      * @param bombs the bombs amount
      * @param board the board matrix
