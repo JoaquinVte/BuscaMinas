@@ -5,6 +5,11 @@ public class Coordinate {
         return String.valueOf((char)Input.getRandomInteger('J','A'))+String.valueOf((char)Input.getRandomInteger('9','0'));
     }
 
+    /**
+     * Method checking whether a coordinate is valid or not - within the board bounds
+     * @param coordinate the coordinate entered by user
+     * @return whether the coordinate is valid (true) or not (false)
+     */
     public static boolean isCoordinateValid(String coordinate){
         if(coordinate.length()!=2) return false;
 

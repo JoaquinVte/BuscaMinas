@@ -12,7 +12,7 @@ public class Main {
         fill();
         placeBombs(bombs);
         while (true) {
-            Screen.show();
+            Screen.show(board, showed);
             String coordinate = Input.getCoordinate("Enter a coordiante:");
             place(coordinate);
         }
