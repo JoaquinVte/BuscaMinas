@@ -8,9 +8,8 @@ public class Main {
     public static void main(String[] args) {
 
         int bombs = 10;
-
-        fill();
-        placeBombs(bombs);
+        Screen.initializeBoard(board);
+        Bomb.placeBombs(bombs, board);
         while (true) {
             Screen.show(board, showed);
             String coordinate = Input.getCoordinate("Enter a coordiante:");
@@ -49,52 +48,9 @@ public class Main {
     }
 
 
-    public static void fill(){
-        for(int fil=0;fil< board.length;fil++ )
-            for(int col=0;col<board[fil].length;col++)
-                board[fil][col]='0';
-    }
 
-    public static void placeBombs(int bombs){
-        String c;
-        for(int i=0;i<bombs;i++){
-            do {
-                c = Coordinate.getRandomCoordinate();
-            } while (board[Coordinate.getRowFromCoordinate(c)][Coordinate.getColumnFromCoordinate(c)] == BOMB);
-            placeBomb(c);
-        }
-    }
-    public static void placeBomb(String c){
-        board[Coordinate.getRowFromCoordinate(c)][Coordinate.getColumnFromCoordinate(c)] = Main.BOMB;
 
-        if(Coordinate.isCoordinateValid(Coordinate.getUp(c)))
-            incrementar(board, Coordinate.getUp(c));
-        if(Coordinate.isCoordinateValid(Coordinate.getDown(c)))
-            incrementar(board, Coordinate.getDown(c));
-        if(Coordinate.isCoordinateValid(Coordinate.getRight(c)))
-            incrementar(board, Coordinate.getRight(c));
-        if(Coordinate.isCoordinateValid(Coordinate.getLeft(c)))
-            incrementar(board, Coordinate.getLeft(c));
 
-        if(Coordinate.isCoordinateValid(Coordinate.getUpRight(c)))
-            incrementar(board, Coordinate.getUpRight(c));
-        if(Coordinate.isCoordinateValid(Coordinate.getUpLeft(c)))
-            incrementar(board, Coordinate.getUpLeft(c));
-        if(Coordinate.isCoordinateValid(Coordinate.getDownRight(c)))
-            incrementar(board, Coordinate.getDownRight(c));
-        if(Coordinate.isCoordinateValid(Coordinate.getDownLeft(c)))
-            incrementar(board, Coordinate.getDownLeft(c));
-
-    }
-    public static void incrementar(char[][] board, String c){
-        int fil = Coordinate.getRowFromCoordinate(c);
-        int col = Coordinate.getColumnFromCoordinate(c);
-
-        if(board[fil][col]!=Main.BOMB){
-            int value = board[fil][col] - '0';
-            board[fil][col] = String.valueOf(value+1).charAt(0);
-        }
-    }
 
 
 
