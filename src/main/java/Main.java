@@ -10,11 +10,13 @@ public class Main {
         int bombs = 10;
         Bomb.initializeBoard(board);
         Bomb.placeBombs(bombs, board);
-        while (true) {
+        while (countCellsNotShowed()>bombs) {
             Screen.show(board, showed);
             String coordinate = Input.getCoordinate("Enter a coordiante:");
             place(coordinate);
         }
+        markToShowAll();
+        Screen.show(board,showed);
 
     }
 
@@ -48,7 +50,19 @@ public class Main {
         }
     }
 
+    private static int countCellsNotShowed(){
+        int sum = 0;
+        for(boolean[] rows : showed)
+            for(boolean cell : rows)
+                sum+=(!cell)?1:0;
 
+        return sum;
+    }
+    private static void markToShowAll(){
+        for(int fil=0;fil< showed.length;fil++ )
+            for(int col=0;col<showed[fil].length;col++)
+                showed[fil][col]=true;
+    }
 
 
 

@@ -27,6 +27,8 @@ public class Screen {
                 if(showed[fil][col]) {
                     if(board[fil][col]==' ')
                         System.out.print(colorize(" " + board[fil][col] + " ",Attribute.BLUE_BACK(),Attribute.WHITE_TEXT()));
+                    else if(board[fil][col]==Main.BOMB)
+                        System.out.print(colorize(" " + board[fil][col] + " ",Attribute.RED_BACK(),Attribute.YELLOW_TEXT()));
                     else
                         System.out.print(colorize(" " + board[fil][col] + " ",Attribute.YELLOW_BACK(),Attribute.RED_TEXT()));
                 } else
