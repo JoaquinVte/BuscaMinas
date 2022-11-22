@@ -8,7 +8,7 @@ public class Coordinate {
      * @return it returns a valid coordinate (string of length 2) having the row and the column
      */
     public static String getRandomCoordinate(){
-        return String.valueOf((char)Input.getRandomInteger('Y','A'))+String.valueOf((char)Input.getRandomInteger('y','a'));
+        return (char) Input.getRandomInteger('A' + Main.boardSize - 1, 'A') +String.valueOf((char)Input.getRandomInteger('a'+Main.boardSize-1,'a'));
     }
 
     /**
@@ -19,12 +19,10 @@ public class Coordinate {
     public static boolean isCoordinateValid(String coordinate){
         if(coordinate.length()!=2) return false;
 
-        if(coordinate.charAt(0)>'Y' || coordinate.charAt(0)<'A')
-            return false;
-        if(coordinate.charAt(1)>'y' || coordinate.charAt(1)<'a')
+        if(coordinate.charAt(0)>='A'+Main.boardSize || coordinate.charAt(0)<'A')
             return false;
 
-        return true;
+        return coordinate.charAt(1) < 'a' + Main.boardSize && coordinate.charAt(1) >= 'a';
     }
 
     /**
@@ -69,7 +67,7 @@ public class Coordinate {
      * @return the coordinate at the right column
      */
     public static String getRight(String coordinate){
-        return String.valueOf((char)(coordinate.charAt(0))) + (char)(coordinate.charAt(1)+1);
+        return String.valueOf(coordinate.charAt(0)) + (char)(coordinate.charAt(1)+1);
     }
 
     /**
@@ -78,7 +76,7 @@ public class Coordinate {
      * @return the coordinate at the left column
      */
     public static String getLeft(String coordinate){
-        return String.valueOf((char)(coordinate.charAt(0))) + (char)(coordinate.charAt(1)-1);
+        return String.valueOf(coordinate.charAt(0)) + (char)(coordinate.charAt(1)-1);
     }
 
     /**

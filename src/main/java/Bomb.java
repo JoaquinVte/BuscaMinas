@@ -8,8 +8,8 @@ public class Bomb {
      * @param board the board matrix
      */
     public static void initializeBoard(char[][][] board){
-        for(int fil=0;fil< board.length;fil++ )
-            for(int col=0;col<board[fil].length;col++) {
+        for(int fil=0;fil< board[0].length;fil++ )
+            for(int col=0;col<board[0].length;col++) {
                 board[0][fil][col] = '0';
                 board[1][fil][col] = '0';
                 board[2][fil][col] = '0';
