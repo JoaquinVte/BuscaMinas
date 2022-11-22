@@ -8,7 +8,7 @@ public class Coordinate {
      * @return it returns a valid coordinate (string of length 2) having the row and the column
      */
     public static String getRandomCoordinate(){
-        return String.valueOf((char)Input.getRandomInteger('J','A'))+String.valueOf((char)Input.getRandomInteger('9','0'));
+        return String.valueOf((char)Input.getRandomInteger('Y','A'))+String.valueOf((char)Input.getRandomInteger('y','a'));
     }
 
     /**
@@ -19,9 +19,9 @@ public class Coordinate {
     public static boolean isCoordinateValid(String coordinate){
         if(coordinate.length()!=2) return false;
 
-        if(coordinate.charAt(0)>'J' || coordinate.charAt(0)<'A')
+        if(coordinate.charAt(0)>'Y' || coordinate.charAt(0)<'A')
             return false;
-        if(coordinate.charAt(1)>'9' || coordinate.charAt(1)<'0')
+        if(coordinate.charAt(1)>'y' || coordinate.charAt(1)<'a')
             return false;
 
         return true;
@@ -42,7 +42,7 @@ public class Coordinate {
      * @return the column value as an integer
      */
     public static int getColumnFromCoordinate(String coordinate){
-        return coordinate.charAt(1)-'0';
+        return coordinate.charAt(1)-'a';
     }
 
     /**

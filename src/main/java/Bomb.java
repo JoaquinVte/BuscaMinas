@@ -7,10 +7,13 @@ public class Bomb {
      * Initializes the board to 0
      * @param board the board matrix
      */
-    public static void initializeBoard(char[][] board){
+    public static void initializeBoard(char[][][] board){
         for(int fil=0;fil< board.length;fil++ )
-            for(int col=0;col<board[fil].length;col++)
-                board[fil][col]='0';
+            for(int col=0;col<board[fil].length;col++) {
+                board[0][fil][col] = '0';
+                board[1][fil][col] = '0';
+                board[2][fil][col] = '0';
+            }
     }
 
     /**
@@ -18,12 +21,12 @@ public class Bomb {
      * @param bombs the bombs amount
      * @param board the board matrix
      */
-    public static void placeBombs(int bombs, char[][] board){
+    public static void placeBombs(int bombs, char[][][] board){
         String c;
         for(int i=0;i<bombs;i++){
             do {
                 c = Coordinate.getRandomCoordinate();
-            } while (board[Coordinate.getRowFromCoordinate(c)][Coordinate.getColumnFromCoordinate(c)] == Main.BOMB);
+            } while (board[0][Coordinate.getRowFromCoordinate(c)][Coordinate.getColumnFromCoordinate(c)] == Main.BOMB);
             placeBomb(c, board);
         }
     }
@@ -33,8 +36,8 @@ public class Bomb {
      * @param c the coordinate
      * @param board the board matrix
      */
-    public static void placeBomb(String c, char[][] board){
-        board[Coordinate.getRowFromCoordinate(c)][Coordinate.getColumnFromCoordinate(c)] = Main.BOMB;
+    public static void placeBomb(String c, char[][][] board){
+        board[0][Coordinate.getRowFromCoordinate(c)][Coordinate.getColumnFromCoordinate(c)] = Main.BOMB;
 
         //it increases the value of the cross coordinate
         if(Coordinate.isCoordinateValid(Coordinate.getUp(c)))
@@ -63,13 +66,13 @@ public class Bomb {
      * @param board the board matrix
      * @param c the coordinate to check
      */
-    private static void increase(char[][] board, String c){
+    private static void increase(char[][][] board, String c){
         int fil = Coordinate.getRowFromCoordinate(c);
         int col = Coordinate.getColumnFromCoordinate(c);
 
-        if(board[fil][col]!=Main.BOMB){
-            int value = board[fil][col] - '0';
-            board[fil][col] = String.valueOf(value+1).charAt(0);
+        if(board[0][fil][col]!=Main.BOMB){
+            int value = board[0][fil][col] - '0';
+            board[0][fil][col] = String.valueOf(value+1).charAt(0);
         }
     }
 

@@ -14,7 +14,7 @@ public class Input {
         System.out.println(text);
         String coordinate;
         do{
-            coordinate = sc.nextLine().toUpperCase();
+            coordinate = sc.nextLine();
         }while (!Coordinate.isCoordinateValid(coordinate));
 
         return coordinate;
