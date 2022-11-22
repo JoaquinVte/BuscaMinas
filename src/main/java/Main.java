@@ -10,13 +10,21 @@ public class Main {
     public static boolean alive = true;
 
     public static void main(String[] args) {
-
+int option;
         Bomb.initializeBoard(board);
         Bomb.placeBombs(bombs,board);
+
         while (countCellsNotShowed()>bombs && alive) {
+            Screen.clean();
             Screen.show(board);
-            String coordinate = Input.getCoordinate("Enter a coordiante:");
-            place(coordinate);
+            Screen.showMenu();
+            option = Input.getOption("Enter option:",2,1);
+            switch (option){
+                case 1:placeFlag();
+                    break;
+                case 2:discoverCell();
+                    break;
+            }
         }
 
         markToShowAll();
@@ -27,6 +35,15 @@ public class Main {
         else
             System.out.println("Loooooooser!!");
 
+    }
+
+    private static void placeFlag() {
+
+    }
+
+    private static void discoverCell() {
+        String coordinate = Input.getCoordinate("Enter a coordiante:");
+        place(coordinate);
     }
 
     private static void place(String coordinate) {

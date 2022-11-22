@@ -44,5 +44,14 @@ public class Screen {
             System.out.print(colorize(" " +(char)('a'+i) + " ",Attribute.BLACK_BACK(),Attribute.WHITE_TEXT()));
         System.out.println(colorize("   ",Attribute.BLACK_BACK(),Attribute.WHITE_TEXT()));
     }
+    public static void clean(){
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+
+    public static void showMenu(){
+        System.out.println("1 - Place flag");
+        System.out.println("2 - Discover cell");
+    }
 
 }

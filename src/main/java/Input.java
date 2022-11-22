@@ -11,13 +11,32 @@ public class Input {
      */
     public static String getCoordinate(String text){
         Scanner sc = new Scanner(System.in);
-        System.out.println(text);
         String coordinate;
         do{
+            System.out.println(text);
             coordinate = sc.nextLine();
+            if(!Coordinate.isCoordinateValid(coordinate))
+                System.out.println("Coordenada no valida. El formato es Aa.");
         }while (!Coordinate.isCoordinateValid(coordinate));
 
         return coordinate;
+    }
+    public static int getOption(String txt,int max,int min){
+        Scanner sc = new Scanner(System.in);
+        int option;
+        do {
+            System.out.println(txt);
+            while (!sc.hasNextInt()) {
+                System.out.println("Only a integer number");
+                System.out.println(txt);
+                sc.next();
+            }
+            option = sc.nextInt();
+            if(option>max || option<min)
+                System.out.println("Only values between " + min + " and " + max);
+        }while (option<=max && option>=min);
+
+        return option;
     }
 
     /**
