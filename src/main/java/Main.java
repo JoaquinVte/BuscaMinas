@@ -4,19 +4,26 @@ public class Main {
 
     public static char[][] board = new char[10][10];
     public static boolean[][] showed = new boolean[10][10];
+    public static boolean alive = true;
 
     public static void main(String[] args) {
 
         int bombs = 10;
         Bomb.initializeBoard(board);
         Bomb.placeBombs(bombs, board);
-        while (countCellsNotShowed()>bombs) {
+        while (countCellsNotShowed()>bombs && alive) {
             Screen.show(board, showed);
             String coordinate = Input.getCoordinate("Enter a coordiante:");
             place(coordinate);
         }
+
         markToShowAll();
         Screen.show(board,showed);
+
+        if(alive)
+            System.out.println("You win.");
+        else
+            System.out.println("Loooooooser!!");
 
     }
 
@@ -46,7 +53,8 @@ public class Main {
                 } else {
                     showed[fil][col]=true;
                 }
-            }
+            }else if (board[fil][col]==BOMB)
+                alive = false;
         }
     }
 
