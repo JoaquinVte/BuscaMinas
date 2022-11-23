@@ -21,6 +21,14 @@ public class Input {
 
         return coordinate;
     }
+
+    /**
+     * Get a option from the console
+     * @param txt the message to show in order to get the user option
+     * @param max maximum value allowed
+     * @param min minimum value allowed
+     * @return chosen option
+     */
     public static int getOption(String txt,int max,int min){
         Scanner sc = new Scanner(System.in);
         int option;
@@ -34,7 +42,7 @@ public class Input {
             option = sc.nextInt();
             if(option>max || option<min)
                 System.out.println("Only values between " + min + " and " + max);
-        }while (option<=max && option>=min);
+        }while (option>max || option<min);
 
         return option;
     }

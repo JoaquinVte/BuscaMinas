@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * Class Bomb to manage the bombs
  */
@@ -8,11 +10,12 @@ public class Bomb {
      * @param board the board matrix
      */
     public static void initializeBoard(char[][][] board){
+
         for(int fil=0;fil< board[0].length;fil++ )
             for(int col=0;col<board[0].length;col++) {
-                board[0][fil][col] = '0';
-                board[1][fil][col] = '0';
-                board[2][fil][col] = '0';
+                board[Main.BOMBS_DIM][fil][col] = '0';
+                board[Main.FLAG_DIM][fil][col] = '0';
+                board[Main.VIEW_DIM][fil][col] = '0';
             }
     }
 
@@ -26,7 +29,7 @@ public class Bomb {
         for(int i=0;i<bombs;i++){
             do {
                 c = Coordinate.getRandomCoordinate();
-            } while (board[0][Coordinate.getRowFromCoordinate(c)][Coordinate.getColumnFromCoordinate(c)] == Main.BOMB);
+            } while (board[Main.BOMBS_DIM][Coordinate.getRowFromCoordinate(c)][Coordinate.getColumnFromCoordinate(c)] == Main.BOMB);
             placeBomb(c, board);
         }
     }
@@ -37,7 +40,7 @@ public class Bomb {
      * @param board the board matrix
      */
     public static void placeBomb(String c, char[][][] board){
-        board[0][Coordinate.getRowFromCoordinate(c)][Coordinate.getColumnFromCoordinate(c)] = Main.BOMB;
+        board[Main.BOMBS_DIM][Coordinate.getRowFromCoordinate(c)][Coordinate.getColumnFromCoordinate(c)] = Main.BOMB;
 
         //it increases the value of the cross coordinate
         if(Coordinate.isCoordinateValid(Coordinate.getUp(c)))
@@ -70,9 +73,9 @@ public class Bomb {
         int fil = Coordinate.getRowFromCoordinate(c);
         int col = Coordinate.getColumnFromCoordinate(c);
 
-        if(board[0][fil][col]!=Main.BOMB){
-            int value = board[0][fil][col] - '0';
-            board[0][fil][col] = String.valueOf(value+1).charAt(0);
+        if(board[Main.BOMBS_DIM][fil][col]!=Main.BOMB){
+            int value = board[Main.BOMBS_DIM][fil][col] - '0';
+            board[Main.BOMBS_DIM][fil][col] = String.valueOf(value+1).charAt(0);
         }
     }
 
